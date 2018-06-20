@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import Route from 'react-router-dom/Route'
-
+import { BrowserRouter, Route } from 'react-router-dom';
 // Imported Components
 import About from './components/About';
+import Home from './components/Home';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path="/" exact render = {
-              () => {
-                return (<h1>Welcome to Stories</h1>);
-              }}>
-          </Route>
-
-          <Route path="/about" exact component = {About}>
-          </Route>
-
+          <Route path="/" exact component = {Home}></Route>
+          <Route path="/about" exact component = {About}></Route>
         </div>
       </BrowserRouter>
     );
