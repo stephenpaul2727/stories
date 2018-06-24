@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Grid, Row, Col, Jumbotron } from 'react-bootstrap';
+import { Grid, Row, Col, Jumbotron } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Posts from './Posts';
 
 class Home extends Component {
   render() {
@@ -15,14 +16,19 @@ class Home extends Component {
           <Row>
             <Col>
               <Jumbotron>
-                <h2>Writing</h2>
+                <h2>Stephen's Posts</h2>
                 <p>
                   This is a simple react redux based website where i can share my ideas and implementations with the rest of the world.
                 </p>
                 <p>
-                  <Button bsStyle="primary">Learn more</Button>
+                  <Link to="newpost" className="btn btn-primary">Create a new post</Link>
                 </p>
               </Jumbotron>
+            </Col>
+          </Row>
+          <Row>
+            <Col xsOffset={1} sm={10} mdOffset={1} md={10}>
+              <Posts />
             </Col>
           </Row>
         </Grid>
