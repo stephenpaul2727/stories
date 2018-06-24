@@ -20,11 +20,15 @@ class Posts extends Component {
   render() {
     const postItems = this.state.posts.map(post => (
       <div key={post._id}>
-        <Col md={1} xs={12}>
-          <FontAwesome name="thumbs-up" size="4x" style={{float:'right'}}/>
-          <span className="Post-Votes">1{post.votes}</span>
+        <Col md={1} xs={6}>
+          <FontAwesome name="thumbs-up" size="4x" style={{float:'right',cursor: 'pointer', color: '#18700d'}}/>
+          <span className="Post-Votes">{post.votes || 0}</span>
         </Col>
-        <Col md={11} xs={12}>
+        <Col md={1} xs={6}>
+          <FontAwesome name="thumbs-down" size="4x" style={{float:'right',cursor: 'pointer', color: '#770817'}}/>
+          <span className="Post-Votes">{post.votes || 0}</span>
+        </Col>
+        <Col md={10} xs={12}>
           <Panel id={post._id} key={post._id} className="Post-Panel">
             <Panel.Heading>
               <Panel.Title toggle>

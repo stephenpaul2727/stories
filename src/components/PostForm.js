@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col, Form, FormGroup, ControlLabel, Button, FormControl } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 
 class PostForm extends Component {
@@ -28,7 +27,6 @@ class PostForm extends Component {
       votes: this.state.votes,
       body: this.state.body,
     }
-
     fetch('http://localhost:4000/api/posts', {
       method: 'POST',
       headers: {
