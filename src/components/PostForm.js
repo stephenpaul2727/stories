@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Form, FormGroup, ControlLabel, Button, FormControl } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class PostForm extends Component {
 
@@ -8,8 +8,11 @@ class PostForm extends Component {
     super(props);
     this.state = {
       title: '',
-      votes: 0,
-      body: ''
+      body: '',
+      upvotes: 0,
+      downvotes: 0,
+      date: new Date(),
+      redirect: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,8 +27,10 @@ class PostForm extends Component {
 
     const post = {
       title: this.state.title,
-      votes: this.state.votes,
       body: this.state.body,
+      upvotes: this.state.upvotes,
+      downvotes: this.state.downvotes,
+      date: new Date(),
     }
     fetch('http://localhost:4000/api/posts', {
       method: 'POST',
@@ -33,14 +38,24 @@ class PostForm extends Component {
         'content-type': 'application/json'
       },
       body: JSON.stringify(post)
-    }).then(res => res.json()).then(data=>console.log(data));
+    }).then(res => res.json()).then(data=>{
+      console.log(data);
+      this.setState({redirect: true});
+    });
   }
 
   render() {
+    const { redirect } = this.state;
+
+     if (redirect) {
+       return <Redirect to='/'/>;
+     }
     return (
       <div>
         <header className="App-header">
           <h1>Welcome to stories</h1>
+          <Link to="/">Home</Link>
+          <span style={{paddingRight: '20px'}}></span>
           <Link to="/about">About</Link>
         </header>
         <h3> Create a new post </h3><br/>
@@ -51,15 +66,6 @@ class PostForm extends Component {
             </Col>
             <Col sm={8}>
               <FormControl type="text" name="title" placeholder="Title of the post" onChange={this.handleChange} value={this.state.title} />
-            </Col>
-          </FormGroup>
-
-          <FormGroup controlId="postTitle">
-            <Col smOffset={1} sm={1}>
-              <ControlLabel>VOTES</ControlLabel>
-            </Col>
-            <Col sm={8}>
-              <FormControl type="number" name="votes" placeholder="0" onChange={this.handleChange} value={this.state.votes} />
             </Col>
           </FormGroup>
 

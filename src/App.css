@@ -15,7 +15,7 @@
 }
 
 .Post-Votes {
-  font-size: 20px;
+  font-size: 15px;
   padding: 20px;
 }
 
@@ -39,5 +39,4 @@
 }
 
 .Post-Panel > .panel-collapse {
-  min-height: 100px;
 }
